@@ -8,7 +8,7 @@ function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Patika Store</Text>
+      <Text style={styles.header}>PATIKASTORE</Text>
       <TextInput
         style={styles.input}
         placeholder="Ara..."
