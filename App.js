@@ -1,50 +1,46 @@
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable prettier/prettier */
-import React from "react";
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, FlatList, } from "react-native";
-import SearchBar from './src/SearchBar/';
-import product from './src/Products.json';
-import Card from './src/Card/Card'
+import { View, Text, FlatList, StyleSheet, TextInput } from 'react-native'
+import React from 'react'
+import patikaProducts from "./src/Products.json"
+import ProductCard from "./src/Card/index"
 
 function App() {
+  const renderProducts = ({ item }) => <ProductCard products={item} />
+
   return (
-    <SafeAreaView style={appStyle.container}>
-      <ScrollView >
-        <Text style={appStyle.header} >PATIKASTORE</Text>
-        <View >
-          <SearchBar />
-        </View>
-        <View>
-          <FlatList
-
-            data={product}
-            renderItem={({ item }) => <Card product={item} />}
-
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    <View style={styles.container}>
+      <Text style={styles.header}>Patika Store</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Ara..."
+      />
+      <FlatList
+        numColumns={2}
+        data={patikaProducts}
+        renderItem={renderProducts}
+      />
+    </View>
+  )
 }
 
-const appStyle = StyleSheet.create(
-  {
-    container: {
-      flex: 1,
-      backgroundColor: 'white',
-    },
-    header: {
-      flex: 1,
-      fontSize: 25,
-      marginLeft: 15,
-      marginBottom: 2,
-      color: 'purple',
-      fontWeight: "bold",
-      fontFamily: 'sans-serif',
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  header: {
+    fontSize: 40,
+    color: "#800080",
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+  input: {
+    height: 40,
+    margin: 10,
+    borderRadius: 5,
+    padding: 10,
+    backgroundColor: "#eee"
+  },
 
-    }
-  }
-)
+})
 
 export default App;
